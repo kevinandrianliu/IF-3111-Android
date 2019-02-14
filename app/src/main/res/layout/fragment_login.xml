@@ -43,6 +43,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="24dp"
         android:layout_marginRight="16dp"
+        android:onClick="GC"
         android:text="Login" />
 
     <RelativeLayout
@@ -62,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/noAccountText"
-            android:onClick="T"
+            android:onClick="switchToRegister"
             android:text="Register now!"
             android:textAlignment="center" />
 
