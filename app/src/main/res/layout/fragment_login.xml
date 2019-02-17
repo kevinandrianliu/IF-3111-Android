@@ -7,44 +7,56 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/loginEmailText"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/loginData"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:text="Email" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp">
 
-    <EditText
-        android:id="@+id/loginEmailValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginEmailText"
-        android:inputType="textEmailAddress" />
+        <TextView
+            android:id="@+id/loginEmailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="Email" />
 
-    <TextView
-        android:id="@+id/loginPasswordText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginEmailValue"
-        android:layout_marginTop="16dp"
-        android:text="Password" />
+        <EditText
+            android:id="@+id/loginEmailValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginEmailText"
+            android:backgroundTint="@color/mainAppColor"
+            android:inputType="textEmailAddress"
+            android:textCursorDrawable="@drawable/default_cursor" />
 
-    <EditText
-        android:id="@+id/loginPasswordValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginPasswordText"
-        android:inputType="textPassword" />
+        <TextView
+            android:id="@+id/loginPasswordText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginEmailValue"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:text="Password" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/loginPasswordValue"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="16dp"
-        android:onClick="GC"
-        android:text="Login" />
+        <EditText
+            android:id="@+id/loginPasswordValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginPasswordText"
+            android:backgroundTint="@color/mainAppColor"
+            android:inputType="textPassword"
+            android:textCursorDrawable="@drawable/default_cursor" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginPasswordValue"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="24dp"
+            android:text="Login" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -60,12 +72,14 @@
             android:textAlignment="center" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/noAccountText"
+            android:layout_centerHorizontal="true"
             android:onClick="switchToRegister"
             android:text="Register now!"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/mainAppColor" />
 
     </RelativeLayout>
 
