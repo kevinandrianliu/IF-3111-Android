@@ -51,16 +51,22 @@ public class RegisterFragment extends Fragment {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mPasswordValue.equals(mRepeatPasswordValue)){
+                String mEmailValueString = mEmailValue.getText().toString();
+                String mPasswordValueString = mPasswordValue.getText().toString();
+                String mRepeatPasswordValueString = mRepeatPasswordValue.getText().toString();
+
+                if (mPasswordValueString.equals(mRepeatPasswordValueString)) {
                     try {
-                        registerAccount(mEmailValue.getText().toString(), mPasswordValue.getText().toString());
-                    } catch (FirebaseAuthWeakPasswordException e){
-                        Log.d(TAG,e.getReason());
-                    } catch (FirebaseAuthInvalidCredentialsException e){
-                        Log.d(TAG,e.getMessage());
-                    } catch (FirebaseAuthUserCollisionException e){
-                        Log.d(TAG,e.getMessage());
+                        registerAccount(mEmailValueString, mPasswordValueString);
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        Log.d(TAG, e.getReason());
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        Log.d(TAG, e.getMessage());
+                    } catch (FirebaseAuthUserCollisionException e) {
+                        Log.d(TAG, e.getMessage());
                     }
+                } else {
+                    Log.d(TAG, "Password mismatch");
                 }
             }
         });
@@ -77,16 +83,15 @@ public class RegisterFragment extends Fragment {
     private void registerAccount(String email, String password) throws
             FirebaseAuthWeakPasswordException,
             FirebaseAuthInvalidCredentialsException,
-            FirebaseAuthUserCollisionException
-    {
-        mAuth.createUserWithEmailAndPassword(email,password)
+            FirebaseAuthUserCollisionException {
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Log.d(TAG,"Register success");
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Register success");
                         } else {
-                            Log.d(TAG,"Register failed");
+                            Log.d(TAG, "Register failed");
                         }
                     }
                 });
