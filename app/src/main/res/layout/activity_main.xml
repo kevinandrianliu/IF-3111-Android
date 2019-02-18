@@ -16,4 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/main_email"/>
+
+    <Button
+        android:id="@+id/main_sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Out"
+        android:layout_below="@id/main_uid"
+        android:onClick="signOut"/>
 </RelativeLayout>

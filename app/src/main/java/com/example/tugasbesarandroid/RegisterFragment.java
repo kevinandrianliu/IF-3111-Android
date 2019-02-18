@@ -67,11 +67,11 @@ public class RegisterFragment extends Fragment {
                     try {
                         registerAccount(mEmailValueString, mPasswordValueString);
                     } catch (FirebaseAuthWeakPasswordException e) {
-                        Log.d(TAG, e.getReason());
+                        Log.d(TAG, "Password Too Weak");
                     } catch (FirebaseAuthInvalidCredentialsException e) {
-                        Log.d(TAG, e.getMessage());
+                        Log.d(TAG, "Credentials wrong");
                     } catch (FirebaseAuthUserCollisionException e) {
-                        Log.d(TAG, e.getMessage());
+                        Log.d(TAG, "Email already used");
                     }
                 } else {
                     Log.d(TAG, "Password mismatch");

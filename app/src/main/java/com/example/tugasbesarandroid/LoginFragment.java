@@ -52,11 +52,13 @@ public class LoginFragment extends Fragment {
         mEmailValue = (EditText) view.findViewById(R.id.loginEmailValue);
         mPassValue = (EditText) view.findViewById(R.id.loginPasswordValue);
 
+        mAuth = FirebaseAuth.getInstance();
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mEmailValueString = mEmailValue.getText().toString();
                 String mPassValueString = mPassValue.getText().toString();
+                Log.d(TAG,mEmailValueString + " " +mPassValueString);
                 loginAccount(mEmailValueString,mPassValueString);
             }
         });
