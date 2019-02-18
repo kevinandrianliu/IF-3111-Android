@@ -1,6 +1,7 @@
 package com.example.tugasbesarandroid;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,13 @@ public class RegisterFragment extends Fragment {
     private EditText mPasswordValue;
     private EditText mRepeatPasswordValue;
     private FirebaseAuth mAuth;
+    private RegisterListener parentActivity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        parentActivity = (RegisterListener) context;
+    }
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -90,6 +98,7 @@ public class RegisterFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Register success");
+                            parentActivity.onRegisterSuccess();
                         } else {
                             Log.d(TAG, "Register failed");
                         }
@@ -97,4 +106,7 @@ public class RegisterFragment extends Fragment {
                 });
     }
 
+    public interface RegisterListener {
+        void onRegisterSuccess();
+    }
 }

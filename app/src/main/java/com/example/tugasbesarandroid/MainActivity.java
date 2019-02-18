@@ -1,47 +1,42 @@
 package com.example.tugasbesarandroid;
 
-import android.os.Parcelable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.animation.Animation;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity { private FirebaseAuth mAuth;
+import org.w3c.dom.Text;
+
+public class MainActivity extends AppCompatActivity {
+    private TextView mEmail;
+    private TextView mUid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.getSupportActionBar().hide();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            FragmentManager fragmentManager;
-            FragmentTransaction fragmentTransaction;
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null){
+            mEmail = (TextView) findViewById(R.id.main_email);
+            mUid = (TextView) findViewById(R.id.main_uid);
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.loginRegisterFragmentContainer, new LoginFragment());
-            fragmentTransaction.commit();
+            mEmail.setText(user.getEmail());
+            mUid.setText(user.getUid());
+        } else {
+            Intent intent = new Intent(this, LoginRegisterActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
-
-    public void switchToRegister(View view) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-
-        fragmentTransaction.replace(R.id.loginRegisterFragmentContainer, new RegisterFragment());
-        fragmentTransaction.addToBackStack(null);
-
-        fragmentTransaction.commit();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(MainActivity.class.getSimpleName(),"MainActivity destroyed");
     }
 }
