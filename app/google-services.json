@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "784527109072-g5ht34eka9u3luunnn5km0kqf0h7k2jb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tugasbesarandroid",
+            "certificate_hash": "a69308a551d462d45e3e433c77cd064c2f62a116"
+          }
+        },
+        {
           "client_id": "784527109072-21o02apd0ua6s7v8kcjktqd0a8pkdqek.apps.googleusercontent.com",
           "client_type": 3
         }

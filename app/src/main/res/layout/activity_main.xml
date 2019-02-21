@@ -17,11 +17,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/main_email"/>
 
+    <TextView
+        android:id="@+id/display_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_uid"/>
+
+    <Button
+        android:id="@+id/main_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:layout_below="@id/display_name"
+        android:onClick="editProfile"/>
+
     <Button
         android:id="@+id/main_sign_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Out"
-        android:layout_below="@id/main_uid"
+        android:layout_below="@id/main_edit_profile"
         android:onClick="signOut"/>
 </RelativeLayout>

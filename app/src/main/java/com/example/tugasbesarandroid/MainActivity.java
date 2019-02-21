@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 public class MainActivity extends AppCompatActivity {
     private TextView mEmail;
     private TextView mUid;
+    private TextView mDisplayName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -26,9 +27,12 @@ public class MainActivity extends AppCompatActivity {
         if (user != null){
             mEmail = (TextView) findViewById(R.id.main_email);
             mUid = (TextView) findViewById(R.id.main_uid);
+            mDisplayName = (TextView) findViewById(R.id.display_name);
 
             mEmail.setText(user.getEmail());
             mUid.setText(user.getUid());
+            mDisplayName.setText(user.getDisplayName());
+
         } else {
             Intent intent = new Intent(this, LoginRegisterActivity.class);
             startActivity(intent);
@@ -39,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
     public void signOut(View view){
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(this, LoginRegisterActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void editProfile(View view){
+        Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
         finish();
     }
