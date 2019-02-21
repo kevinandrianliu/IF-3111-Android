@@ -2,6 +2,7 @@ package com.example.tugasbesarandroid;
 
 
 import android.content.Context;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +32,8 @@ public class RegisterFragment extends Fragment {
     private EditText mEmailValue;
     private EditText mPasswordValue;
     private EditText mRepeatPasswordValue;
+    private ProgressBar mProgressBar;
+
     private FirebaseAuth mAuth;
     private RegisterListener parentActivity;
 
@@ -54,6 +58,7 @@ public class RegisterFragment extends Fragment {
         mEmailValue = view.findViewById(R.id.registerEmailValue);
         mPasswordValue = view.findViewById(R.id.registerPasswordValue);
         mRepeatPasswordValue = view.findViewById(R.id.registerRetypePasswordValue);
+        mProgressBar = view.findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
@@ -64,15 +69,10 @@ public class RegisterFragment extends Fragment {
                 String mRepeatPasswordValueString = mRepeatPasswordValue.getText().toString();
 
                 if (mPasswordValueString.equals(mRepeatPasswordValueString)) {
-                    try {
-                        registerAccount(mEmailValueString, mPasswordValueString);
-                    } catch (FirebaseAuthWeakPasswordException e) {
-                        Log.d(TAG, "Password Too Weak");
-                    } catch (FirebaseAuthInvalidCredentialsException e) {
-                        Log.d(TAG, "Credentials wrong");
-                    } catch (FirebaseAuthUserCollisionException e) {
-                        Log.d(TAG, "Email already used");
-                    }
+                    mRegisterButton.setEnabled(false);
+                    mProgressBar.setVisibility(View.VISIBLE);
+
+                    registerAccount(mEmailValueString,mPasswordValueString);
                 } else {
                     Log.d(TAG, "Password mismatch");
                 }
@@ -88,19 +88,19 @@ public class RegisterFragment extends Fragment {
         Log.d(this.getClass().getSimpleName(), "DESTROYED");
     }
 
-    private void registerAccount(String email, String password) throws
-            FirebaseAuthWeakPasswordException,
-            FirebaseAuthInvalidCredentialsException,
-            FirebaseAuthUserCollisionException {
+    private void registerAccount(String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Register success");
                             parentActivity.onRegisterSuccess();
                         } else {
-                            Log.d(TAG, "Register failed");
+                            Log.w(TAG, "Register failed");
+                            Log.w(TAG, task.getException());
+                            mRegisterButton.setEnabled(true);
                         }
                     }
                 });

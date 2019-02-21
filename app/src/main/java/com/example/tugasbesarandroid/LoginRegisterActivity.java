@@ -31,18 +31,6 @@ public class LoginRegisterActivity extends AppCompatActivity implements Register
         }
     }
 
-
-    public void switchToRegister(View view) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-
-        fragmentTransaction.replace(R.id.loginRegisterFragmentContainer, new RegisterFragment());
-        fragmentTransaction.addToBackStack(null);
-
-        fragmentTransaction.commit();
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -61,5 +49,17 @@ public class LoginRegisterActivity extends AppCompatActivity implements Register
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onNoAccountAvailable() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+
+        fragmentTransaction.replace(R.id.loginRegisterFragmentContainer, new RegisterFragment());
+        fragmentTransaction.addToBackStack(null);
+
+        fragmentTransaction.commit();
     }
 }
