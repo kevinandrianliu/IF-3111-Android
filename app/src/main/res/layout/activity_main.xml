@@ -15,13 +15,33 @@
         android:id="@+id/main_uid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/main_email"/>
+        android:layout_below="@id/main_email" />
 
     <Button
         android:id="@+id/main_sign_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Out"
         android:layout_below="@id/main_uid"
-        android:onClick="signOut"/>
+        android:onClick="signOut"
+        android:text="Sign Out" />
+
+    <Button
+        android:id="@+id/subscribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_uid"
+        android:layout_toEndOf="@id/main_sign_out"
+        android:onClick="subscribe"
+        android:text="Subscribe" />
+
+    <Button
+        android:id="@+id/unsubscribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_uid"
+        android:layout_toEndOf="@id/subscribe"
+        android:onClick="unsubscribe"
+        android:text="Unubscribe" />
+
+
 </RelativeLayout>
