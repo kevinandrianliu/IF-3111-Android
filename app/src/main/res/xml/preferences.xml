@@ -5,4 +5,13 @@
         android:key="theme_option"
         android:summary="@string/theme_app"
         android:title="@string/switch_title"/>
+    <ListPreference
+        android:defaultValue="O"
+        android:entries="@array/theme_color_titles"
+        android:entryValues="@array/theme_color_values"
+        android:key="theme_color"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/theme_color_title"
+        android:summary="@string/theme_app"/>
 </PreferenceScreen>

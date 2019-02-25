@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
@@ -42,8 +43,34 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean switchPref = sharedPref.getBoolean(SettingsActivity.value_theme, false);
+        String color = sharedPref.getString(SettingsActivity.value_theme_color, "O");
         if(switchPref){
-            this.setTheme(R.style.AppTheme2);
+            if(color.equals("O")) {
+                this.setTheme(R.style.AppTheme2);
+            }
+            if(color.equals("G")) {
+                this.setTheme(R.style.AppTheme4);
+            }
+            if(color.equals("B")) {
+                this.setTheme(R.style.AppTheme6);
+            }
+            if(color.equals("R")) {
+                this.setTheme(R.style.AppTheme8);
+            }
+        }
+        else{
+            if(color.equals("O")) {
+                this.setTheme(R.style.AppTheme1);
+            }
+            if(color.equals("G")) {
+                this.setTheme(R.style.AppTheme3);
+            }
+            if(color.equals("B")) {
+                this.setTheme(R.style.AppTheme5);
+            }
+            if(color.equals("R")) {
+                this.setTheme(R.style.AppTheme7);
+            }
         }
         setContentView(R.layout.activity_main);
         mDrawer = (DrawerLayout)findViewById(R.id.activity_main);
@@ -85,11 +112,12 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.account:
                         startActivity(new Intent(getApplicationContext(), EditProfileActivity.class));
+                        break;
                     case R.id.settings:
                         startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                    default:
-                        return true;
+                        break;
                 }
+                return true;
             }
         });
     }

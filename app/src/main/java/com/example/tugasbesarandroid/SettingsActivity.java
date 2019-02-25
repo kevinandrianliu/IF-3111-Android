@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 public class SettingsActivity extends AppCompatActivity {
     public static final String value_theme = "theme_option";
+    public static final String value_theme_color = "theme_color";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

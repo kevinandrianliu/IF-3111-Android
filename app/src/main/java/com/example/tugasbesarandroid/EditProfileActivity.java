@@ -1,12 +1,14 @@
 package com.example.tugasbesarandroid;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +37,38 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean switchPref = sharedPref.getBoolean(SettingsActivity.value_theme, false);
+        String color = sharedPref.getString(SettingsActivity.value_theme_color, "O");
+        if(switchPref){
+            if(color.equals("O")) {
+                this.setTheme(R.style.AppTheme2);
+            }
+            if(color.equals("G")) {
+                this.setTheme(R.style.AppTheme4);
+            }
+            if(color.equals("B")) {
+                this.setTheme(R.style.AppTheme6);
+            }
+            if(color.equals("R")) {
+                this.setTheme(R.style.AppTheme8);
+            }
+        }
+        else{
+            if(color.equals("O")) {
+                this.setTheme(R.style.AppTheme1);
+            }
+            if(color.equals("G")) {
+                this.setTheme(R.style.AppTheme3);
+            }
+            if(color.equals("B")) {
+                this.setTheme(R.style.AppTheme5);
+            }
+            if(color.equals("R")) {
+                this.setTheme(R.style.AppTheme7);
+            }
+        }
         setContentView(R.layout.activity_edit_profile);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
