@@ -39,7 +39,7 @@ public class BackgroundService extends Service implements LocationListener {
             runnable = new Runnable() {
                 public void run() {
                     Location newLocation = getLocation();
-                    float distance = 2.22f;
+                    float distance = 0.00f;
 
                     if (location == null){
                         location = newLocation;
@@ -82,7 +82,6 @@ public class BackgroundService extends Service implements LocationListener {
                     isLocationAvail = true;
 
                     if (isNetworkEnabled){
-                        Toast.makeText(this,"Using Network",Toast.LENGTH_SHORT).show();
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 1, this);
 
                         if (locationManager != null){
@@ -94,7 +93,6 @@ public class BackgroundService extends Service implements LocationListener {
                             }
                         }
                     } else if (isGPSEnabled){
-                        Toast.makeText(this,"Using GPS",Toast.LENGTH_SHORT).show();
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, this);
 
                         if (locationManager != null){

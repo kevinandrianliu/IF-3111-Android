@@ -32,7 +32,7 @@ public class CountFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             float location = intent.getFloatExtra("distance",0.0f);
-            distanceValue.setText(String.format(Locale.getDefault(),"%2f",location));
+            distanceValue.setText(String.format(Locale.getDefault(),"%.2f",location));
         }
     };
 
