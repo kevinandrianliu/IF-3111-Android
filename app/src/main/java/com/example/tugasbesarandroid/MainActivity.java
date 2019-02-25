@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -86,24 +88,26 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
-            mEmail = (TextView) findViewById(R.id.main_email);
             mEmailNavbar = (TextView) mNavView.findViewById(R.id.email);
-            mUid = (TextView) findViewById(R.id.main_uid);
             mDisplayName = (TextView) mNavView.findViewById(R.id.display_name);
             mImage = (ImageView) mNavView.findViewById(R.id.image);
 
-            mEmail.setText(user.getEmail());
             mEmailNavbar.setText(user.getEmail());
-            mUid.setText(user.getUid());
             mDisplayName.setText(user.getDisplayName());
             Picasso.with(this).load(user.getPhotoUrl()).placeholder(R.drawable.icon).into(mImage);
-            startService(new Intent(this, BackgroundService.class));
 
         } else {
             Intent intent = new Intent(this, LoginRegisterActivity.class);
             startActivity(intent);
             finish();
         }
+
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.main_fragment_container, new CountFragment());
+        fragmentTransaction.commit();
+
         mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
