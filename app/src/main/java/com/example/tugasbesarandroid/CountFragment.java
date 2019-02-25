@@ -1,6 +1,8 @@
 package com.example.tugasbesarandroid;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,10 +21,18 @@ public class CountFragment extends Fragment {
     private Button startCounter;
     private Button stopCounter;
 
+    private Context context;
+    private Intent backgroundServiceIntent;
+
     public CountFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,11 +45,15 @@ public class CountFragment extends Fragment {
         startCounter = view.findViewById(R.id.start_counter);
         stopCounter = view.findViewById(R.id.stop_counter);
 
+        backgroundServiceIntent = new Intent(context, BackgroundService.class);
+
         startCounter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (startCounter.isEnabled()){
-
+                    context.startService(backgroundServiceIntent);
+                    startCounter.setEnabled(false);
+                    stopCounter.setEnabled(true);
                 }
             }
         });
@@ -47,7 +61,9 @@ public class CountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (stopCounter.isEnabled()){
-                    //Stop counter
+                    context.stopService(backgroundServiceIntent);
+                    startCounter.setEnabled(true);
+                    stopCounter.setEnabled(false);
                 }
             }
         });
