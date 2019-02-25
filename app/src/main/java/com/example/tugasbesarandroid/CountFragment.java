@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 
 /**
@@ -28,8 +31,8 @@ public class CountFragment extends Fragment {
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String location = intent.getStringExtra("distance");
-            distanceValue.setText(location);
+            float location = intent.getFloatExtra("distance",0.0f);
+            distanceValue.setText(String.format(Locale.getDefault(),"%2f",location));
         }
     };
 
@@ -76,6 +79,12 @@ public class CountFragment extends Fragment {
                 }
             }
         });
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("GOGOGO");
+        filter.addCategory(Intent.CATEGORY_DEFAULT);
+        context.registerReceiver(receiver,filter);
+
         // Inflate the layout for this fragment
         return view;
     }

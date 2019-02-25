@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -31,6 +32,8 @@ public class BackgroundService extends Service implements LocationListener {
         @Override
         public void onCreate() {
             Toast.makeText(this, "Begin counting. Happy exercise!", Toast.LENGTH_SHORT).show();
+
+
 
             handler = new Handler();
             runnable = new Runnable() {
