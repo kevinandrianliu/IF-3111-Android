@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDrawer = (DrawerLayout)findViewById(R.id.activity_main);`
+        mDrawer = (DrawerLayout)findViewById(R.id.activity_main);
         mToggle = new ActionBarDrawerToggle(this, mDrawer,R.string.drawer_open, R.string.drawer_close);
 
         mDrawer.addDrawerListener(mToggle);
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             mUid.setText(user.getUid());
             mDisplayName.setText(user.getDisplayName());
             Picasso.with(this).load(user.getPhotoUrl()).placeholder(R.drawable.icon).into(mImage);
+            startService(new Intent(this, BackgroundService.class));
 
         } else {
             Intent intent = new Intent(this, LoginRegisterActivity.class);
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     @Override

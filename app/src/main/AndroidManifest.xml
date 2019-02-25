@@ -12,14 +12,19 @@
         <activity android:name=".LoginRegisterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"
-                    android:launchMode="singleTask"
-                    />
+                <action
+                    android:name="android.intent.action.MAIN"
+                    android:launchMode="singleTask" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".EditProfileActivity" />
+
+        <service
+            android:name=".BackgroundService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

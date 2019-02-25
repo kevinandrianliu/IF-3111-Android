@@ -40,9 +40,11 @@ public class EditProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDisplayNameValue = (EditText) findViewById(R.id.display_name_value);
+        mDisplayNameValue.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         mSaveChanges = (Button) findViewById(R.id.save_changes);
         mSelectPic = (Button) findViewById(R.id.upload_pic_button);
         mImage = (ImageView) findViewById(R.id.image);
+
 
 
         mSaveChanges.setOnClickListener(new View.OnClickListener() {
