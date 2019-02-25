@@ -61,8 +61,20 @@ public class BackgroundService extends Service implements LocationListener {
             handler = new Handler();
             runnable = new Runnable() {
                 public void run() {
+                    Location newLocation = getLocation();
+                    float distance = 0.00f;
 
-                    handler.postDelayed(runnable,10000);
+                    if (location == null){
+                        location = newLocation;
+                    } else {
+                        distance = newLocation.distanceTo(location);
+                        location = newLocation;
+                    }
+
+                    Intent intent = new Intent("GOGOGO");
+                    intent.putExtra("distance",distance);
+                    sendBroadcast(intent);
+                    handler.postDelayed(runnable,1000);
                 }
             };
 
@@ -97,20 +109,6 @@ public class BackgroundService extends Service implements LocationListener {
                             Intent intent = new Intent("STEPS");
                             intent.putExtra("steps",steps/2);
                             sendBroadcast(intent);
-
-                            Location newLocation = getLocation();
-                            float distance = 0.00f;
-
-                            if (location == null){
-                                location = newLocation;
-                            } else {
-                                distance = newLocation.distanceTo(location);
-                                location = newLocation;
-                            }
-
-                            Intent intent2 = new Intent("GOGOGO");
-                            intent2.putExtra("distance",distance);
-                            sendBroadcast(intent2);
                         }
                     }
                 }
@@ -121,7 +119,7 @@ public class BackgroundService extends Service implements LocationListener {
                 }
             }, accelerometerSensor, SensorManager.SENSOR_DELAY_UI);
 
-            handler.postDelayed(runnable,10000);
+            handler.postDelayed(runnable,1000);
         }
 
         @Override
