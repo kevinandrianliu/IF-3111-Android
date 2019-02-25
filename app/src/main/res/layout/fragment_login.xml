@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:id="@+id/loginData"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp">
+
+        <TextView
+            android:id="@+id/loginEmailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="Email" />
+
+        <EditText
+            android:id="@+id/loginEmailValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginEmailText"
+            android:inputType="textEmailAddress"
+            android:textCursorDrawable="@drawable/default_cursor" />
+
+        <TextView
+            android:id="@+id/loginPasswordText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginEmailValue"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="16dp"
+            android:text="Password" />
+
+        <EditText
+            android:id="@+id/loginPasswordValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginPasswordText"
+            android:inputType="textPassword"
+            android:textCursorDrawable="@drawable/default_cursor" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginPasswordValue"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@id/loginButton"
+            android:indeterminate="true"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginPasswordValue"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="24dp"
+            android:text="Login" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:id="@+id/noAccountText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/registerNowText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/noAccountText"
+            android:layout_centerHorizontal="true"
+            android:text="Register now!"
+            android:textAlignment="center"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
