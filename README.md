@@ -47,13 +47,15 @@ Deliverables
 ------
 mobile/app/src/main/java/com/example/tugasbesarandroid: Letak Activity menu utama(termasuk sensor yang dipakai), Activity untuk Edit Profile, Activity untuk Settings, Activity untuk Login dan Register, dan Services yang dipakai
 
-- MainActivity.java
-- EditProfileActivity.java
-- LoginRegisterActivity.java
-- SettingsActivity.java
-- LoginFragment.java
-- RegisterFragment.java
-- BackgroundService.java
+- MainActivity.java : Activity utama(termasuk sensor untuk mengukur langkah dan jarak)
+- EditProfileActivity.java : Activity Edit Profile
+- LoginRegisterActivity.java : Activity Login dan Register
+- SettingsActivity.java : Activity Settings
+- SettingsFragment.java : Fragment Settings
+- LoginFragment.java : Fragment Login
+- RegisterFragment.java : Fragment Register
+- BackgroundService.java : Background Service
+- HandleFirebaseMessaging.java : Push Notification
 
  mobile/app/src/main/res/layout: Letak layout tampilan Activity dan Fragment
  
