@@ -56,6 +56,8 @@ mobile/app/src/main/java/com/example/tugasbesarandroid: Letak Activity menu utam
 - RegisterFragment.java : Fragment Register
 - BackgroundService.java : Background Service
 - HandleFirebaseMessaging.java : Push Notification
+- CountFragment.java : Fragment Step Counter
+- LocationMonitor.java : Location Service
 
  mobile/app/src/main/res/layout: Letak layout tampilan Activity dan Fragment
  
@@ -64,8 +66,11 @@ mobile/app/src/main/java/com/example/tugasbesarandroid: Letak Activity menu utam
 - activity_main.xml
 - fragment_login.xml
 - fragment_register.xml
+- fragment_count.xml
 - nav_header.xml
 
 mobile/app/src/main/res/menu: Letak tampilan Navigation View
 
 - navigation_menu.xml
+
+mobile/app/src/main/res/drawable: Letak icon untuk Edit Profile dan Settings
