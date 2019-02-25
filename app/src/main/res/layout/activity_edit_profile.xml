@@ -18,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/display_name_text"
-        android:backgroundTint="@color/mainAppColor"
         android:textCursorDrawable="@drawable/default_cursor" />
 
     <TextView

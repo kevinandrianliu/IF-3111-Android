@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="mainAppColor">#00641F</color>
+    <color name="colorPrimaryTheme1">#FFC600</color>
+    <color name="colorPrimaryTheme2">#FF7E00</color>
 </resources>

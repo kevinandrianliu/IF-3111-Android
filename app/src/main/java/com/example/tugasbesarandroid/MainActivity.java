@@ -1,5 +1,6 @@
 package com.example.tugasbesarandroid;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,8 +39,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean switchPref = sharedPref.getBoolean(SettingsActivity.value_theme, false);
+        if(switchPref){
+            this.setTheme(R.style.AppTheme2);
+        }
         setContentView(R.layout.activity_main);
-
         mDrawer = (DrawerLayout)findViewById(R.id.activity_main);
         mToggle = new ActionBarDrawerToggle(this, mDrawer,R.string.drawer_open, R.string.drawer_close);
 
@@ -70,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-
         mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -80,13 +86,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.account:
                         startActivity(new Intent(getApplicationContext(), EditProfileActivity.class));
                     case R.id.settings:
-                        Toast.makeText(MainActivity.this, "Settings",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                     default:
                         return true;
                 }
             }
         });
-
     }
 
     @Override
