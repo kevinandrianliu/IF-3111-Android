@@ -9,4 +9,8 @@
         android:icon="@drawable/ic_settings_black"
         android:title="Settings"/>
 
+    <item android:id="@+id/sign_out"
+        android:icon="@drawable/ic_sign_out"
+        android:title="Sign out"/>
+
 </menu>

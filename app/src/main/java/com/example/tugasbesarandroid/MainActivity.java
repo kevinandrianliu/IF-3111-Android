@@ -139,6 +139,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.settings:
                         startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                         break;
+                    case R.id.sign_out:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(), LoginRegisterActivity.class);
+                        finish();
+                        break;
                 }
                 return true;
             }
