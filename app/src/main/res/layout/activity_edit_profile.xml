@@ -21,11 +21,28 @@
         android:backgroundTint="@color/mainAppColor"
         android:textCursorDrawable="@drawable/default_cursor" />
 
+    <TextView
+        android:id="@+id/profile_picture_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_below="@id/display_name_value"
+        android:text="Profile Picture" />
+
+    <Button
+        android:id="@+id/upload_pic_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Select Picture"
+        android:layout_below="@id/profile_picture_text"
+        android:layout_gravity="center"/>
+
     <Button
         android:id="@+id/save_changes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/display_name_value"
+        android:layout_below="@id/upload_pic_button"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="24dp"
         android:text="Save Changes" />
