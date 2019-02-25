@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigation;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -135,11 +134,21 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void signOut(View view){
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(this, LoginRegisterActivity.class);
-        startActivity(intent);
-        finish();
+    public void startLocation(View view) {
+        if (locationMonitor.isLocationAvail()){
+            Location currentLocation = locationMonitor.getLocation();
+
+            if (lastKnownLocation == null){
+                differenceValue.setText("0");
+            } else {
+                differenceValue.setText(String.format(Locale.getDefault(),"%f",lastKnownLocation.distanceTo(currentLocation)));
+            }
+
+            latitudeValue.setText(String.format(Locale.getDefault(),"%f",currentLocation.getLatitude()));
+            longitudeValue.setText(String.format(Locale.getDefault(),"%f",currentLocation.getLongitude()));
+
+            lastKnownLocation = currentLocation;
+        }
     }
 
     public void editProfile(View view){
