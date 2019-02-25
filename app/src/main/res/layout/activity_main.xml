@@ -20,17 +20,23 @@
         android:layout_below="@id/accelerometer_text" />
 
     <TextView
-        android:id="@+id/gyroscope_text"
+        android:id="@+id/accel_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/accelerometer_value"
-        android:text="Gyroscope" />
+        android:text="Linear Acceleration" />
 
     <TextView
-        android:id="@+id/gyroscope_value"
+        android:id="@+id/type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/gyroscope_text" />
+        android:layout_below="@id/step_count"/>
+
+    <TextView
+        android:id="@+id/accel_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/accel_text" />
 
     <TextView
         android:id="@+id/step_count"
