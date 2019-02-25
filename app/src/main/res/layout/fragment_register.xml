@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/registerEmailText"
-            android:backgroundTint="@color/mainAppColor"
             android:inputType="textEmailAddress"
             android:textCursorDrawable="@drawable/default_cursor" />
 
@@ -41,7 +40,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/registerPasswordText"
-            android:backgroundTint="@color/mainAppColor"
             android:inputType="textPassword"
             android:textCursorDrawable="@drawable/default_cursor" />
 
@@ -58,7 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/registerRetypePasswordText"
-            android:backgroundTint="@color/mainAppColor"
             android:inputType="textPassword"
             android:textCursorDrawable="@drawable/default_cursor" />
 
@@ -67,7 +64,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            android:indeterminateTint="@color/mainAppColor"
             android:layout_toStartOf="@id/registerButton"
             android:layout_below="@id/registerRetypePasswordValue"
             android:layout_marginTop="24dp"

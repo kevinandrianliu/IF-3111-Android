@@ -26,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/loginEmailText"
-            android:backgroundTint="@color/mainAppColor"
             android:inputType="textEmailAddress"
             android:textCursorDrawable="@drawable/default_cursor" />
 
@@ -44,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/loginPasswordText"
-            android:backgroundTint="@color/mainAppColor"
             android:inputType="textPassword"
             android:textCursorDrawable="@drawable/default_cursor" />
 
@@ -57,7 +55,6 @@
             android:layout_marginEnd="16dp"
             android:layout_toStartOf="@id/loginButton"
             android:indeterminate="true"
-            android:indeterminateTint="@color/mainAppColor"
             android:visibility="invisible" />
 
         <Button
@@ -90,8 +87,7 @@
             android:layout_below="@+id/noAccountText"
             android:layout_centerHorizontal="true"
             android:text="Register now!"
-            android:textAlignment="center"
-            android:textColor="@color/mainAppColor" />
+            android:textAlignment="center"/>
 
     </RelativeLayout>
 
