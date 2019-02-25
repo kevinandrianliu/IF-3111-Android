@@ -9,6 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
@@ -21,10 +23,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
+import com.squareup.picasso.Picasso;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.squareup.picasso.Picasso;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.w3c.dom.Text;
 
@@ -33,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
     private TextView mEmail;
     private TextView mEmailNavbar;
     private TextView mUid;
+
     private TextView mDisplayName;
     private ImageView mImage;
     private DrawerLayout mDrawer;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigation;
+    private Intent mService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -96,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
             mDisplayName.setText(user.getDisplayName());
             Picasso.with(this).load(user.getPhotoUrl()).placeholder(R.drawable.icon).into(mImage);
 
+            mService = new Intent(this,HandleFirebaseMessaging.class);
+
         } else {
             Intent intent = new Intent(this, LoginRegisterActivity.class);
             startActivity(intent);
@@ -139,6 +147,34 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EditProfileActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void subscribe(View view){
+        FirebaseMessaging.getInstance().subscribeToTopic("daily_quotes")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String message = "Task successful";
+                        if (!task.isSuccessful()){
+                            message = "Task not successful";
+                        }
+                        Log.d("MainActivity", message);
+                    }
+                });
+    }
+
+    public void unsubscribe(View view){
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("daily_quotes")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String message = "Task successful";
+                        if (!task.isSuccessful()){
+                            message = "Task not successful";
+                        }
+                        Log.d("MainActivity", message);
+                    }
+                });
     }
 
     @Override
