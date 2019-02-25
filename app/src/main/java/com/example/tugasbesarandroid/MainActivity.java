@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -132,23 +133,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void startLocation(View view) {
-        if (locationMonitor.isLocationAvail()){
-            Location currentLocation = locationMonitor.getLocation();
-
-            if (lastKnownLocation == null){
-                differenceValue.setText("0");
-            } else {
-                differenceValue.setText(String.format(Locale.getDefault(),"%f",lastKnownLocation.distanceTo(currentLocation)));
-            }
-
-            latitudeValue.setText(String.format(Locale.getDefault(),"%f",currentLocation.getLatitude()));
-            longitudeValue.setText(String.format(Locale.getDefault(),"%f",currentLocation.getLongitude()));
-
-            lastKnownLocation = currentLocation;
-        }
     }
 
     public void editProfile(View view){

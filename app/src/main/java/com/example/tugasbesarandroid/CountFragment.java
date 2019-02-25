@@ -1,8 +1,10 @@
 package com.example.tugasbesarandroid;
 
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,6 +25,13 @@ public class CountFragment extends Fragment {
 
     private Context context;
     private Intent backgroundServiceIntent;
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String location = intent.getStringExtra("distance");
+            distanceValue.setText(location);
+        }
+    };
 
     public CountFragment() {
         // Required empty public constructor
