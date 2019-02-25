@@ -137,7 +137,7 @@ public class BackgroundService extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-
+        Toast.makeText(this, "Status changed: " + location.toString(), Toast.LENGTH_LONG).show();
     }
 
     @Override
