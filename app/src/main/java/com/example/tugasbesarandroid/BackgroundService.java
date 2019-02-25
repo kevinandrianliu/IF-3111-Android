@@ -47,7 +47,7 @@ public class BackgroundService extends Service implements LocationListener {
     private Sensor accelerometerSensor;
     private Sensor gyroscopeSensor;
     private int steps;
-    private long timeBefore;
+    private long timeBefore = 0;
 
         public Handler handler = null;
         public static Runnable runnable = null;
@@ -61,19 +61,7 @@ public class BackgroundService extends Service implements LocationListener {
             handler = new Handler();
             runnable = new Runnable() {
                 public void run() {
-                    Location newLocation = getLocation();
-                    float distance = 0.00f;
 
-                    if (location == null){
-                        location = newLocation;
-                    } else {
-                        distance = newLocation.distanceTo(location);
-                        location = newLocation;
-                    }
-
-                    Intent intent = new Intent("GOGOGO");
-                    intent.putExtra("distance",distance);
-                    sendBroadcast(intent);
                     handler.postDelayed(runnable,10000);
                 }
             };
@@ -82,7 +70,6 @@ public class BackgroundService extends Service implements LocationListener {
 
             sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
             accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
             steps = 0;
 
@@ -108,8 +95,22 @@ public class BackgroundService extends Service implements LocationListener {
                             }
 
                             Intent intent = new Intent("STEPS");
-                            intent.putExtra("distance",steps);
+                            intent.putExtra("steps",steps/2);
                             sendBroadcast(intent);
+
+                            Location newLocation = getLocation();
+                            float distance = 0.00f;
+
+                            if (location == null){
+                                location = newLocation;
+                            } else {
+                                distance = newLocation.distanceTo(location);
+                                location = newLocation;
+                            }
+
+                            Intent intent2 = new Intent("GOGOGO");
+                            intent2.putExtra("distance",distance);
+                            sendBroadcast(intent2);
                         }
                     }
                 }
