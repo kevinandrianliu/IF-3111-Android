@@ -16,15 +16,38 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.Calendar;
+import java.util.Locale;
+
+import static java.lang.Math.*;
+
 
 public class BackgroundService extends Service implements LocationListener {
     private final String TAG = this.getClass().getSimpleName();
+    private final double stepThreshold = 10.5;
     private LocationManager locationManager;
     private Location location;
 
     private boolean isLocationAvail = false;
     private double latitude;
     private double longitude;
+
+    private Sensor accelerometerSensor;
+    private Sensor gyroscopeSensor;
+    private int steps;
+    private long timeBefore;
 
         public Handler handler = null;
         public static Runnable runnable = null;
@@ -54,6 +77,48 @@ public class BackgroundService extends Service implements LocationListener {
                     handler.postDelayed(runnable,10000);
                 }
             };
+
+            SensorManager sensorManager;
+
+            sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+            accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            gyroscopeSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+
+            steps = 0;
+
+            sensorManager.registerListener(new SensorEventListener() {
+                @Override
+                public void onSensorChanged(SensorEvent event) {
+                    long timeNow = event.timestamp;
+
+                    if (timeBefore == 0){
+                        timeBefore = timeNow;
+                    } else {
+                        if (timeNow - timeBefore > 100000000L) {
+                            timeBefore = timeNow;
+                            String text =
+                                    "X = " + ((Float) event.values[0]).toString() + "\n" +
+                                            "Y = " + ((Float) event.values[1]).toString() + "\n" +
+                                            "Z = " + ((Float) event.values[2]).toString() + "\n";
+
+                            double magnitude = sqrt(event.values[0]*event.values[0] + event.values[1]*event.values[1] + event.values[2]*event.values[2]);
+
+                            if (magnitude > stepThreshold){
+                                steps++;
+                            }
+
+                            Intent intent = new Intent("STEPS");
+                            intent.putExtra("distance",steps);
+                            sendBroadcast(intent);
+                        }
+                    }
+                }
+
+                @Override
+                public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+                }
+            }, accelerometerSensor, SensorManager.SENSOR_DELAY_UI);
 
             handler.postDelayed(runnable,10000);
         }
