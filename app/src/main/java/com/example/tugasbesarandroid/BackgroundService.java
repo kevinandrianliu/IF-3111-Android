@@ -79,6 +79,7 @@ public class BackgroundService extends Service implements LocationListener {
                     isLocationAvail = true;
 
                     if (isNetworkEnabled){
+                        Toast.makeText(this,"Using Network",Toast.LENGTH_SHORT).show();
                         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 1, this);
 
                         if (locationManager != null){
@@ -90,6 +91,7 @@ public class BackgroundService extends Service implements LocationListener {
                             }
                         }
                     } else if (isGPSEnabled){
+                        Toast.makeText(this,"Using GPS",Toast.LENGTH_SHORT).show();
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 1, this);
 
                         if (locationManager != null){
