@@ -17,20 +17,51 @@
         android:id="@+id/accelerometer_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/accelerometer_text"/>
+        android:layout_below="@id/accelerometer_text" />
 
     <TextView
         android:id="@+id/gyroscope_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gyroscope"
-        android:layout_below="@id/accelerometer_value"/>
+        android:layout_below="@id/accelerometer_value"
+        android:text="Gyroscope" />
 
     <TextView
         android:id="@+id/gyroscope_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/gyroscope_text"/>
+        android:layout_below="@id/gyroscope_text" />
+
+    <TextView
+        android:id="@+id/step_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/button_set"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="setThreshold"
+        android:text="Set" />
+
+    <EditText
+        android:id="@+id/threshold_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/button_set" />
+
+    <Button
+        android:id="@+id/reset_step"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_set"
+        android:layout_alignParentEnd="true"
+        android:text="Reset"
+        android:onClick="resetStep"/>
 
 
 </RelativeLayout>
