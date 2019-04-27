@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+//import android.content.IntentFilter;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -12,21 +12,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.TextView;
+//import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-import android.content.Context;
+//import java.util.Locale;
+//import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+//import android.support.v7.app.AppCompatActivity;
+//import android.os.Bundle;
+//import android.util.Log;
+//import android.view.View;
+//import android.widget.EditText;
+//import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -36,7 +36,7 @@ import static java.lang.Math.*;
 
 public class BackgroundService extends Service implements LocationListener {
     private final String TAG = this.getClass().getSimpleName();
-    private final double stepThreshold = 10.5;
+    private static final double stepThreshold = 10.5;
     private LocationManager locationManager;
     private Location location;
 
@@ -45,7 +45,7 @@ public class BackgroundService extends Service implements LocationListener {
     private double longitude;
 
     private Sensor accelerometerSensor;
-    private Sensor gyroscopeSensor;
+   // private Sensor gyroscopeSensor;
     private int steps;
     private long timeBefore = 0;
 
@@ -62,7 +62,7 @@ public class BackgroundService extends Service implements LocationListener {
             runnable = new Runnable() {
                 public void run() {
                     Location newLocation = getLocation();
-                    float distance = 0.00f;
+                    double distance = 0.00f;
 
                     if (location == null){
                         location = newLocation;

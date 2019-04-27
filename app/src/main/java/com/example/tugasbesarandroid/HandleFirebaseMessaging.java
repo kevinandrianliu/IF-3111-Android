@@ -5,13 +5,10 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import java.util.Map;
 
 public class HandleFirebaseMessaging extends FirebaseMessagingService {
     private final String TAG = this.getClass().getSimpleName();

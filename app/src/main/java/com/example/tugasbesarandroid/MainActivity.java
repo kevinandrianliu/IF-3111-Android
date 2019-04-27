@@ -1,42 +1,33 @@
 package com.example.tugasbesarandroid;
 
-import android.app.Activity;
+import android.content.ComponentCallbacks2;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.FirebaseApp;
-import com.squareup.picasso.Picasso;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-public class MainActivity extends AppCompatActivity {
-    private double stepThreshold = 10.5;
+public class MainActivity extends AppCompatActivity implements ComponentCallbacks2 {
+    private static final double stepThreshold = 10.5;
     private final String TAG = this.getClass().getSimpleName();
     private Sensor accelerometerSensor;
     private Sensor gyroscopeSensor;
@@ -124,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_fragment_container, new CountFragment());
+        fragmentTransaction.replace(R.id.main_fragment_container, new CountFragment());
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
         mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -208,4 +200,5 @@ public class MainActivity extends AppCompatActivity {
         steps = 0;
 */
     }
+
 }
